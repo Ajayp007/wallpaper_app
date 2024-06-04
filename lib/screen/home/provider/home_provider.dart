@@ -6,10 +6,12 @@ import 'package:wallpaper_app/utils/helper/api_helper.dart';
 
 class HomeProvider with ChangeNotifier {
   ApiHelper helper = ApiHelper();
-  List<HomeModel> wallpaperList =[];
+  List<HomeModel> wallpaperList = [];
 
   String search = "nature";
   int page = 1;
+
+  int index = 1;
 
   Future<HomeModel?>? model;
 
@@ -23,8 +25,13 @@ class HomeProvider with ChangeNotifier {
     getWallpaperApi();
   }
 
+  void changeIndex(int i) {
+    index = i;
+    notifyListeners();
+  }
+
   void getWallpaperApi() {
-    model = helper.getAPI(q: search,page: page);
+    model = helper.getAPI(q: search, page: page);
     model!.then(
       (value) {
         if (value != null) {

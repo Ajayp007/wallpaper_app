@@ -19,10 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
     scrollController.addListener(
       () {
-        if(scrollController.position.pixels==scrollController.position.maxScrollExtent)
-          {
-            context.read<HomeProvider>().changePage();
-          }
+        if (scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent) {
+          context.read<HomeProvider>().changePage();
+        }
       },
     );
   }
@@ -84,8 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             onTap: () {
+                              providerR!.changeIndex(index);
                               Navigator.pushNamed(context, 'wallpaper',
-                                  arguments: model.hitsList![index]);
+                                  arguments: model);
                             },
                             child: Image.network(
                               "${model.hitsList![index].previewURL}",
